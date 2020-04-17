@@ -30,5 +30,3 @@ def train(input_string, filename):
     get_frequency(freq, input_string)
     with open(filename, 'w') as tmp:
         json.dump(freq, tmp)
-
-
