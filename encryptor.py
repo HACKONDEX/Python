@@ -1,32 +1,43 @@
-import cesar
-import vigenere
+import argparse
+import base_functionals
 
+commands = argparse.ArgumentParser()
+commands.add_argument('command', help='encode|decode|hack|train')
+commands.add_argument('--cipher', help='caesar|vigenere')
+commands.add_argument('--key', help='key == number|word')
+commands.add_argument('--input-file', help='file with text to encode')
+commands.add_argument('--output-file', help='the output file')
+commands.add_argument('--text-file', help='file to make model from')
+commands.add_argument('--model-file', help='file to make model there')
+args = commands.parse_args()
 
-def chiphrator(input_filename, output_filename, key, any_input_direction,
-               any_output_direction, chipher, enc_dec):
+try:
+    with open(args.input_file, 'r') as f:
+        a = f.read()
+    any_input_direction = True
+    input_filename = args.input_file
+except:
+    any_input_direction = False
+    input_filename = "file.nothing"
 
-    if any_input_direction:
-        with open(input_filename, 'r') as input_file:
-            input_string = input_file.read()
-    else:
-        input_string = input()
+try:
+    with open(args.output_file, 'r') as f:
+        a = f.read()
+    any_output_direction = True
+    output_filename = args.output_file
+except:
+    any_output_direction = False
+    output_filename = "file.nothing"
 
-    if chipher == 'cesar':
-        if enc_dec == 'enc':
-            output_string = cesar.encode_caesar(key, input_string)
-        else:
-            output_string = cesar.decode_caesar(key, input_string)
-    else:
-        if enc_dec == 'enc':
-            output_string = vigenere.encode_vigenere(key, input_string)
-        else:
-            output_string = vigenere.decode_vigenere(key, input_string)
+if args.command == 'train':
+    try:
+        with open(args.text_file, 'r') as f:
+            a = f.read()
+        any_input_direction = True
+        input_filename = args.text_file
+    except:
+        any_input_direction = False
+        input_filename = "file.nothing"
 
-    if any_output_direction:
-        with open(output_filename, 'w') as output_file:
-            output_file.write(output_string)
-    else:
-        print(output_string)
-
-
-chiphrator("aka_vig_enc.txt", "aka_decode_new.txt", "dog", True, True, "vig", "dec")
+base_functionals.call_right_method(args.command, args.cipher, args.key, any_input_direction,
+                                   any_output_direction, input_filename, output_filename, args.model_file)
