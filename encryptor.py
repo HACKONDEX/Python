@@ -4,7 +4,7 @@ import vigenere
 
 def chiphrator(input_filename, output_filename, key, any_input_direction,
                any_output_direction, chipher, enc_dec):
-    
+
     if any_input_direction:
         with open(input_filename, 'r') as input_file:
             input_string = input_file.read()
@@ -27,3 +27,6 @@ def chiphrator(input_filename, output_filename, key, any_input_direction,
             output_file.write(output_string)
     else:
         print(output_string)
+
+
+chiphrator("aka_vig_enc.txt", "aka_decode_new.txt", "dog", True, True, "vig", "dec")
