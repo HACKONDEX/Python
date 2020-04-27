@@ -4,8 +4,6 @@ import alphabet
 
 def code_caesar(key, code_string):
     answer_list = list()
-    letter_type = dict()
-    letter_number = 0
     for i in code_string:
         if i in alphabet.uppercase:
             letter_type = alphabet.uppercase_dict
@@ -18,8 +16,7 @@ def code_caesar(key, code_string):
             continue
         answer_list.append(letter_type[(letter_number + key % alphabet.size
                                         + alphabet.size) % alphabet.size])
-        answer = ""
-
+    answer = ""
     return answer.join(answer_list)
 
 
