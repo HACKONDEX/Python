@@ -1,11 +1,10 @@
 import string
 import train
 import json
-import cesar
 import collections
+import alphabet
 
 
-# Уже кризис названий
 def hack_cesar_from_string(input_string, model_filename):
     with open(model_filename) as f:
         right_frequency = json.load(f)
@@ -13,14 +12,16 @@ def hack_cesar_from_string(input_string, model_filename):
     # буду считать текст максимально реальный если средняя арифметическая модуля разниц частот минимальна
     median = 100
     right_key = 0
-    for i in range(26):
-        output_string = cesar.decode_caesar(i, input_string)
+    ordinary_frequency = collections.Counter()
+    train.get_frequency(ordinary_frequency, input_string)
+    for i in range(alphabet.size):
         new_freq = collections.Counter()
-        train.get_frequency(new_freq, output_string)
+        for j in string.ascii_lowercase:
+            new_freq[j] = ordinary_frequency[alphabet.lowercase_dict[(alphabet.lowercase[j] + i) % alphabet.size]]
         summary = 0
         for j in string.ascii_lowercase:
             summary += abs(right_frequency[j] - new_freq[j])
-        summary /= 26
+        summary /= alphabet.size
         if summary < median:
             median = summary
             right_key = i
