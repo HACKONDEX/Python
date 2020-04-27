@@ -45,12 +45,3 @@ def encode_vigenere(code_key, code_string):
 
 def decode_vigenere(code_key, code_string):
     return code_vigenere(-1, code_key, code_string)
-
-
-aaa = " My heart is beating fast!@#$%^&*()er an2342d 5fa6435ster"
-ax = encode_vigenere('dog', aaa)
-print(ax)
-print(decode_vigenere('dog', ax))
-
-a = True
-print(int(a))
