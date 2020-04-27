@@ -1,22 +1,26 @@
-# Cesar
+# Caesar
 import alphabet
 
 
 def code_caesar(key, code_string):
-    coded_answer = ""
+    answer_list = list()
     letter_type = dict()
+    ordinary_alphabet = dict()
     for i in code_string:
-        if i in alphabet.alphabet[0]:
-            letter_type = alphabet.alphabet[0]
-        elif i in alphabet.alphabet[1]:
-            letter_type = alphabet.alphabet[1]
+        if i in alphabet.uppercase:
+            letter_type = alphabet.uppercase_dict
+            ordinary_alphabet = alphabet.uppercase
+        elif i in alphabet.lowercase:
+            letter_type = alphabet.lowercase_dict
+            ordinary_alphabet = alphabet.lowercase
         else:
-            coded_answer += i
+            answer_list.append(i)
             continue
-        coded_answer += letter_type[(letter_type[i] + key % letter_type['size']
-                                     + letter_type['size']) % letter_type['size']]
+        answer_list.append(letter_type[(ordinary_alphabet[i] + key % alphabet.size
+                                        + alphabet.size) % alphabet.size])
+        answer = ""
 
-    return coded_answer
+    return answer.join(answer_list)
 
 
 def encode_caesar(key, code_string):

@@ -1,19 +1,18 @@
 import string
 
 
-def built_alphabet(string_):
+def built_alphabet(string_, mode):
     dictionary = dict()
-
-    for i in range(len(string_)):
-        dictionary[string_[i]] = i
-        dictionary[i] = string_[i]
-
-    dictionary['size'] = len(string_)
+    key = mode - 1
+    value = 2 - mode
+    for i in enumerate(string_):
+        dictionary[i[key]] = i[value]
 
     return dictionary
 
 
-lowercase = built_alphabet(string.ascii_lowercase)
-uppercase = built_alphabet(string.ascii_uppercase)
-
-alphabet = [lowercase, uppercase]
+lowercase_dict = built_alphabet(string.ascii_lowercase, 1)
+uppercase_dict = built_alphabet(string.ascii_uppercase, 1)
+lowercase = built_alphabet(string.ascii_lowercase, 2)
+uppercase = built_alphabet(string.ascii_uppercase, 2)
+size = 26
