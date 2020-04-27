@@ -20,14 +20,6 @@ except:
     any_input_direction = False
     input_filename = "file.nothing"
 
-# try:
-#     with open(args.output_file, 'r') as f:
-#         a = f.read()
-#     any_output_direction = True
-#     output_filename = args.output_file
-# except:
-#     any_output_direction = False
-#     output_filename = "file.nothing"
 any_output_direction = False
 output_filename = "file.nothing"
 try:
