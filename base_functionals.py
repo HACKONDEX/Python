@@ -26,6 +26,7 @@ def ciphrator(input_filename, output_filename, key, any_input_direction, any_out
     input_string = return_input(input_filename, any_input_direction)
 
     if cipher == 'caesar':
+        key = int(key)
         if enc_dec == 'enc':
             output_string = caesar.encode_caesar(key, input_string)
         else:
@@ -51,29 +52,3 @@ def make_model(input_filename, any_input_direction, model_filename):
 
     input_string = return_input(input_filename, any_input_direction)
     train.train(input_string, model_filename)
-
-
-def call_right_method(command, cipher, key, any_input_direction, any_output_direction,
-                      input_filename, output_filename, model_filename):
-    if command == 'encode':
-        if cipher == 'caesar':
-            key = int(key)
-            ciphrator(input_filename, output_filename, key, any_input_direction, any_output_direction, 'caesar', 'enc')
-        elif cipher == 'vigenere':
-            ciphrator(input_filename, output_filename, key, any_input_direction, any_output_direction, 'vigenere', 'enc')
-        else:
-            print("No such command available")
-    elif command == 'decode':
-        if cipher == 'caesar':
-            key = int(key)
-            ciphrator(input_filename, output_filename, key, any_input_direction, any_output_direction, 'caesar', 'dec')
-        elif cipher == 'vigenere':
-            ciphrator(input_filename, output_filename, key, any_input_direction, any_output_direction, 'vigenere', 'dec')
-        else:
-            print("No such command available")
-    elif command == 'hack':
-        hack_cesar(input_filename, output_filename, any_input_direction, any_output_direction, model_filename)
-    elif command == 'train':
-        make_model(input_filename, any_input_direction, model_filename)
-    else:
-        print("No such command available")
