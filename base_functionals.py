@@ -25,7 +25,7 @@ def ciphrator(input_filename, output_filename, key, any_input_direction, any_out
 
     input_string = return_input(input_filename, any_input_direction)
 
-    if cipher == 'cesar':
+    if cipher == 'caesar':
         if enc_dec == 'enc':
             output_string = caesar.encode_caesar(key, input_string)
         else:
@@ -58,7 +58,7 @@ def call_right_method(command, cipher, key, any_input_direction, any_output_dire
     if command == 'encode':
         if cipher == 'caesar':
             key = int(key)
-            ciphrator(input_filename, output_filename, key, any_input_direction, any_output_direction, 'cesar', 'enc')
+            ciphrator(input_filename, output_filename, key, any_input_direction, any_output_direction, 'caesar', 'enc')
         elif cipher == 'vigenere':
             ciphrator(input_filename, output_filename, key, any_input_direction, any_output_direction, 'vigenere', 'enc')
         else:
@@ -66,7 +66,7 @@ def call_right_method(command, cipher, key, any_input_direction, any_output_dire
     elif command == 'decode':
         if cipher == 'caesar':
             key = int(key)
-            ciphrator(input_filename, output_filename, key, any_input_direction, any_output_direction, 'cesar', 'dec')
+            ciphrator(input_filename, output_filename, key, any_input_direction, any_output_direction, 'caesar', 'dec')
         elif cipher == 'vigenere':
             ciphrator(input_filename, output_filename, key, any_input_direction, any_output_direction, 'vigenere', 'dec')
         else:
