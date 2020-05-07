@@ -2,39 +2,17 @@
 import alphabet
 
 
-def get_key_of_the_same_size(key, code_string):
-    keys_count = int(len(code_string) / len(key)) + int(not len(code_string) % len(key) == 0)
-    answer_list = list()
-    for i in range(keys_count):
-        answer_list.append(key)
-    answer = ""
-    return answer.join(answer_list)
-
-
 def code_vigenere(coefficient, key, code_string):
-    code_key = get_key_of_the_same_size(key, code_string)
-
+    key_size = len(key)
     answer_list = list()
     index = 0
     for i in range(len(code_string)):
+        if key[i % key_size] in alphabet.lowercase:
+            index = alphabet.lowercase[key[i % key_size]]
+        elif key[i % key_size] in alphabet.uppercase:
+            index = alphabet.uppercase[key[i % key_size]]
 
-        if code_key[i] in alphabet.lowercase:
-            index = alphabet.lowercase[code_key[i]]
-        elif code_key[i] in alphabet.uppercase:
-            index = alphabet.uppercase[code_key[i]]
-
-        if code_string[i] in alphabet.lowercase:
-            letter_type = alphabet.lowercase_dict
-            letter_number = alphabet.lowercase[code_string[i]]
-        elif code_string[i] in alphabet.uppercase:
-            letter_type = alphabet.uppercase_dict
-            letter_number = alphabet.uppercase[code_string[i]]
-        else:
-            answer_list.append(code_string[i])
-            continue
-
-        answer_list.append(letter_type[(letter_number + coefficient *
-                                        index + alphabet.size) % alphabet.size])
+        alphabet.code_one_symbol(code_string[i], coefficient * index, answer_list)
     answer = ""
     return answer.join(answer_list)
 
