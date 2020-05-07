@@ -5,13 +5,7 @@ import json
 import collections
 
 
-def set_initial_values(frequency):
-    for i in string.ascii_lowercase:
-        frequency[i] = 0
-
-
 def get_frequency(frequency, input_string):
-    set_initial_values(frequency)
     letter_count = 0
     for it in input_string:
 
@@ -26,7 +20,7 @@ def get_frequency(frequency, input_string):
 
 
 def train(input_string, filename):
-    freq = collections.Counter()
+    freq = collections.Counter(string.ascii_lowercase)
     get_frequency(freq, input_string)
     with open(filename, 'w') as tmp:
         json.dump(freq, tmp)

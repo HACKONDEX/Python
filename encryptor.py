@@ -24,31 +24,35 @@ def output_file_checker(args_output_file):
     return return_
 
 
-def call_cipher(args, enc_dec):
-    input_ = input_file_checker(args.input_file, "input")
-    output_ = output_file_checker(args.output_file)
-    base_functionals.ciphrator(input_[1], output_[1], args.key, input_[0],
-                               output_[0], args.cipher, enc_dec)
+def call_cipher(args, is_encode):
+    input_information = input_file_checker(args.input_file, "input")
+    input_string = base_functionals.return_input(input_information[1], input_information[0])
+    output_string = base_functionals.ciphrator(input_string, args.key, args.cipher, is_encode)
+    output_information = output_file_checker(args.output_file)
+    base_functionals.create_output(output_information[1], output_information[0], output_string)
 
 
 def encode(args):
-    call_cipher(args, 'enc')
+    call_cipher(args, True)
 
 
 def decode(args):
-    call_cipher(args, 'dec')
+    call_cipher(args, False)
 
 
 def train(args):
-    input_ = input_file_checker(args.text_file, "text")
-    base_functionals.make_model(input_[1], input_[0], args.model_file.name)
+    input_information = input_file_checker(args.text_file, "text")
+    input_string = base_functionals.return_input(input_information[1], input_information[0])
+    base_functionals.make_model(input_string, args.model_file.name)
 
 
 def hack(args):
-    input_ = input_file_checker(args.input_file, "input")
-    output_ = output_file_checker(args.output_file)
-    model_ = input_file_checker(args.model_file, "model")
-    base_functionals.hack_cesar(input_[1], output_[1], input_[0], output_[0], model_[1])
+    input_information = input_file_checker(args.input_file, "input")
+    input_string = base_functionals.return_input(input_information[1], input_information[0])
+    model_information = input_file_checker(args.model_file, "model")
+    output_string = base_functionals.hack_cesar(input_string, model_information[1])
+    output_information = output_file_checker(args.output_file)
+    base_functionals.create_output(output_information[1], output_information[0], output_string)
 
 
 parser = argparse.ArgumentParser(description=" Command line arguments reader",
