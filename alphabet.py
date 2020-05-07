@@ -13,4 +13,4 @@ lowercase_dict = built_alphabet(string.ascii_lowercase, True)
 uppercase_dict = built_alphabet(string.ascii_uppercase, True)
 lowercase = built_alphabet(string.ascii_lowercase, False)
 uppercase = built_alphabet(string.ascii_uppercase, False)
-size = 26
+size = len(lowercase)
