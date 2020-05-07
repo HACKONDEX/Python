@@ -33,7 +33,7 @@ def ciphrator(input_string, key, cipher, is_encode):
         return vigenere.decode_vigenere(key, input_string)
 
 
-def hack_cesar(input_string, model_filename):
+def hack_caesar(input_string, model_filename):
 
     right_key = hack.hack_cesar_from_string(input_string, model_filename)
     return caesar.decode_caesar(right_key, input_string)

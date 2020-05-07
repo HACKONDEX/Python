@@ -50,7 +50,7 @@ def hack(args):
     input_information = input_file_checker(args.input_file, "input")
     input_string = base_functionals.return_input(input_information[1], input_information[0])
     model_information = input_file_checker(args.model_file, "model")
-    output_string = base_functionals.hack_cesar(input_string, model_information[1])
+    output_string = base_functionals.hack_caesar(input_string, model_information[1])
     output_information = output_file_checker(args.output_file)
     base_functionals.create_output(output_information[1], output_information[0], output_string)
 
