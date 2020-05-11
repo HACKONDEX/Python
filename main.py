@@ -6,10 +6,10 @@ commands_list = ["help",
                  "add city",
                  "city list",
                  "temperature",
-                 "change temperature"
+                 "change temperature",
                  "moisture",
-                 "change moisture"
-                 "temperature difference",
+                 "change moisture",
+                 "temp diff",
                  "last days statistics",
                  "make prediction",
                  "exit"]
@@ -48,7 +48,7 @@ def main():
     print("Type \'help\' for command list")
     while True:
         try:
-            command = input("Enter command>")
+            command = input("\nEnter command> ")
             if command == commands_list[0]:
                 # help
                 print_list(commands_list)

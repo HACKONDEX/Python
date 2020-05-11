@@ -1,5 +1,9 @@
 import requests
 
+temperature_message = "Temperature should be a number, try again!"
+moisture_message = "Moisture should be a number, try again!"
+city_name_message = "Enter city name> "
+
 
 def input_for_int(input_message, error_message):
     while True:
@@ -13,9 +17,9 @@ def input_for_int(input_message, error_message):
 
 def add_city(args):
     verdict = requests.post(f'http://{args.host}:{args.port}/add_city', data=dict(
-        name=input("Enter city name> "),
-        temp=input_for_int("Enter temperature> ", "Temperature should be a number, try again!"),
-        moist=input_for_int("Enter moisture> ", "Moisture should be a number, try again!")
+        name=input(city_name_message),
+        temp=input_for_int("Enter temperature> ", temperature_message),
+        moist=input_for_int("Enter moisture> ", moisture_message)
     )).text
     print(verdict)
 
@@ -29,28 +33,46 @@ def city_list(args):
 
 
 def temperature(args):
-    pass
+    verdict = requests.get(f'http://{args.host}:{args.port}/temperature',
+                           data=dict(name=input(city_name_message))).text
+    print(verdict)
 
 
 def change_temperature(args):
-    pass
+    verdict = requests.post(f'http://{args.host}:{args.port}/change_temperature', data=dict(
+        name=input(city_name_message),
+        temp=input_for_int("Enter new temperature> ", temperature_message)
+    )).text
+    print(verdict)
 
 
 def moisture(args):
-    pass
+    verdict = requests.get(f'http://{args.host}:{args.port}/moisture',
+                           data=dict(name=input(city_name_message))).text
+    print(verdict)
 
 
 def change_moisture(args):
-    pass
+    verdict = requests.post(f'http://{args.host}:{args.port}/change_moisture', data=dict(
+        name=input(city_name_message),
+        moist=input_for_int("Enter new moisture> ", moisture_message))).text
+    print(verdict)
 
 
 def temperature_difference(args):
-    pass
+    verdict = requests.get(f'http://{args.host}:{args.port}/temperature_difference', data=dict(
+        first=input("Enter first city name> "),
+        second=input("Enter second city name> "))).text
+    print(verdict)
 
 
 def last_days_statistics(args):
-    pass
+    verdict = requests.get(f'http://{args.host}:{args.port}/statistics',
+                           data=dict(name=input(city_name_message))).text
+    print(verdict)
 
 
 def make_prediction(args):
-    pass
+    verdict = requests.get(f'http://{args.host}:{args.port}/make_prediction',
+                           data=dict(name=input(city_name_message))).text
+    print(verdict)
