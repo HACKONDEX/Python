@@ -86,7 +86,4 @@ def main():
     application.run('::', port=8000, debug=True)
 
 
-# if __name__ == '__server_main__':
-#     main()
-
 main()
