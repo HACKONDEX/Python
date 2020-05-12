@@ -8,15 +8,18 @@ def input_check(input_):
             break
         except ValueError:
             print("Input must be a number!!")
-            print("Try again!")
+            raise ValueError
+        except TypeError:
+            print("Input must be a number!!")
+            raise TypeError
     return tmp
 
 
 class City:
     def __init__(self, name, temperature, moisture):
         self.name = name
-        self.temperature = temperature
-        self.moisture = moisture
+        self.temperature = input_check(temperature)
+        self.moisture = input_check(moisture)
         self.statistics = [(temperature, moisture)]
 
     def get_temperature_in_kelvins(self):
