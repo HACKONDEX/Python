@@ -13,14 +13,6 @@ def return_input(input_filename, any_input_direction):
     return input_string
 
 
-def create_output(output_filename, any_output_direction, output_string):
-    if any_output_direction:
-        with open(output_filename, 'w') as output_file:
-            output_file.write(output_string)
-    else:
-        print(output_string)
-
-
 def ciphrator(input_string, key, cipher, is_encode):
     if cipher == 'caesar':
         key = int(key)

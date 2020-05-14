@@ -16,20 +16,23 @@ def input_file_checker(args_input_file, file_name):
     return return_
 
 
-def output_file_checker(args_output_file):
+def get_input(args_input_file, file_name):
+    information = input_file_checker(args_input_file, file_name)
+    return base_functionals.return_input(information[1], information[0])
+
+
+def create_output(args_output_file, output_string):
     if args_output_file:
-        return_ = (True, args_output_file.name)
+        with open(args_output_file.name, 'w') as output_file:
+            output_file.write(output_string)
     else:
-        return_ = (False, "no_file")
-    return return_
+        print(output_string)
 
 
 def call_cipher(args, is_encode):
-    input_information = input_file_checker(args.input_file, "input")
-    input_string = base_functionals.return_input(input_information[1], input_information[0])
+    input_string = get_input(args.input_file, "input")
     output_string = base_functionals.ciphrator(input_string, args.key, args.cipher, is_encode)
-    output_information = output_file_checker(args.output_file)
-    base_functionals.create_output(output_information[1], output_information[0], output_string)
+    create_output(args.output_file, output_string)
 
 
 def encode(args):
@@ -47,12 +50,10 @@ def train(args):
 
 
 def hack(args):
-    input_information = input_file_checker(args.input_file, "input")
-    input_string = base_functionals.return_input(input_information[1], input_information[0])
+    input_string = get_input(args.input_file, "input")
     model_information = input_file_checker(args.model_file, "model")
     output_string = base_functionals.hack_caesar(input_string, model_information[1])
-    output_information = output_file_checker(args.output_file)
-    base_functionals.create_output(output_information[1], output_information[0], output_string)
+    create_output(args.output_file, output_string)
 
 
 parser = argparse.ArgumentParser(description=" Command line arguments reader",

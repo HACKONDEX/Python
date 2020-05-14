@@ -2,7 +2,7 @@
 import alphabet
 import string
 import json
-import collections
+from _collections import defaultdict
 
 
 def get_frequency(frequency, input_string):
@@ -20,7 +20,7 @@ def get_frequency(frequency, input_string):
 
 
 def train(input_string, filename):
-    freq = collections.Counter(string.ascii_lowercase)
+    freq = defaultdict(int)
     get_frequency(freq, input_string)
     with open(filename, 'w') as tmp:
         json.dump(freq, tmp)
