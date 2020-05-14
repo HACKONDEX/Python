@@ -13,8 +13,7 @@ def code_vigenere(coefficient, key, code_string):
             index = alphabet.uppercase[key[i % key_size]]
 
         alphabet.code_one_symbol(code_string[i], coefficient * index, answer_list)
-    answer = ""
-    return answer.join(answer_list)
+    return "".join(answer_list)
 
 
 def encode_vigenere(code_key, code_string):
