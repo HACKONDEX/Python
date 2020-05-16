@@ -4,15 +4,6 @@ import hack
 import train
 
 
-def return_input(input_filename, any_input_direction):
-    if any_input_direction:
-        with open(input_filename, 'r') as input_file:
-            input_string = input_file.read()
-    else:
-        input_string = input()
-    return input_string
-
-
 def ciphrator(input_string, key, cipher, is_encode):
     if cipher == 'caesar':
         key = int(key)
@@ -25,12 +16,9 @@ def ciphrator(input_string, key, cipher, is_encode):
         return vigenere.decode_vigenere(key, input_string)
 
 
-def hack_caesar(input_string, model_filename):
-
-    right_key = hack.hack_caesar_from_string(input_string, model_filename)
-    return caesar.decode_caesar(right_key, input_string)
+def hack_caesar(input_string, right_frequency):
+    return caesar.decode_caesar(hack.hack_caesar_from_string(input_string, right_frequency), input_string)
 
 
 def make_model(input_string, model_filename):
-
     train.train(input_string, model_filename)

@@ -1,24 +1,20 @@
 import argparse
 import base_functionals
+import json
 
 
-def input_file_checker(args_input_file, file_name):
+def get_input(args_input_file, file_name):
     if args_input_file:
         try:
-            with open(args_input_file.name, 'r') as f:
-                a = f.read()
-            return_ = (True, args_input_file.name)
+            with open(args_input_file.name, 'r') as input_file:
+                input_string = input_file.read()
+            return input_string
         except FileNotFoundError:
             print(" There is no such", file_name, "file ")
             raise FileNotFoundError
     else:
-        return_ = (False, "no_file")
-    return return_
-
-
-def get_input(args_input_file, file_name):
-    information = input_file_checker(args_input_file, file_name)
-    return base_functionals.return_input(information[1], information[0])
+        input_string = input()
+    return input_string
 
 
 def create_output(args_output_file, output_string):
@@ -30,8 +26,8 @@ def create_output(args_output_file, output_string):
 
 
 def call_cipher(args, is_encode):
-    input_string = get_input(args.input_file, "input")
-    output_string = base_functionals.ciphrator(input_string, args.key, args.cipher, is_encode)
+    output_string = base_functionals.ciphrator(get_input(args.input_file, "input"),
+                                               args.key, args.cipher, is_encode)
     create_output(args.output_file, output_string)
 
 
@@ -44,16 +40,18 @@ def decode(args):
 
 
 def train(args):
-    input_information = input_file_checker(args.text_file, "text")
-    input_string = base_functionals.return_input(input_information[1], input_information[0])
-    base_functionals.make_model(input_string, args.model_file.name)
+    base_functionals.make_model(get_input(args.text_file, "text"),
+                                args.model_file.name)
 
 
 def hack(args):
-    input_string = get_input(args.input_file, "input")
-    model_information = input_file_checker(args.model_file, "model")
-    output_string = base_functionals.hack_caesar(input_string, model_information[1])
-    create_output(args.output_file, output_string)
+    try:
+        with open(args.model_file.name) as model:
+            right_frequency = json.load(model)
+    except FileNotFoundError:
+        print("There is no model file")
+    create_output(args.output_file, base_functionals.hack_caesar
+    (get_input(args.input_file, "input"), right_frequency))
 
 
 parser = argparse.ArgumentParser(description=" Command line arguments reader",

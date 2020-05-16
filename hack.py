@@ -1,14 +1,10 @@
 import string
 import train
-import json
 import collections
 import alphabet
 
 
-def hack_caesar_from_string(input_string, model_filename):
-    with open(model_filename) as f:
-        right_frequency = json.load(f)
-
+def hack_caesar_from_string(input_string, right_frequency):
     # буду считать текст максимально реальный если средняя арифметическая модуля разниц частот минимальна
     average_arithmetical = float("inf")
     right_key = 0
