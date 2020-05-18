@@ -50,8 +50,9 @@ def hack(args):
             right_frequency = json.load(model)
     except FileNotFoundError:
         print("There is no model file")
-    create_output(args.output_file, base_functionals.hack_caesar
-    (get_input(args.input_file, "input"), right_frequency))
+    create_output(args.output_file, base_functionals.hack_caesar(
+        get_input(args.input_file, "input"), right_frequency
+    ))
 
 
 parser = argparse.ArgumentParser(description=" Command line arguments reader",
