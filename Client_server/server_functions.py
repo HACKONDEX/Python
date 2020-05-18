@@ -49,10 +49,6 @@ def change_moisture(name, city_dict, new_moisture):
     return " ".join(return_)
 
 
-def return_true():
-    return True
-
-
 def make_prediction(name, city_dict):
     data = city_dict[name].make_prediction()
     return_ = ["Tomorrow in", name, "will be", str(int(data[0])),
@@ -72,3 +68,4 @@ def statistics(name, city_dict):
         return_.append(str(int(data[i][1])))
         return_.append("\n")
     return "".join(return_)
+

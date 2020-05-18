@@ -62,9 +62,9 @@ def temperature_difference():
     message = "One the cities or both aren't being served!\n" \
               "Please check the serving city list using command city list"
     if check_name_and_do_request(first_name, city_list, False, True) \
-            (server_functions.return_true)() and \
+            (lambda: True)() and \
             check_name_and_do_request(second_name, city_list, False, True) \
-            (server_functions.return_true)():
+            (lambda: True)():
         return lib.get_temperature_difference(city_dict[first_name], city_dict[second_name])
     else:
         return message
@@ -87,3 +87,4 @@ def main():
 
 
 main()
+

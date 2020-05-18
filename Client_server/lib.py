@@ -6,12 +6,9 @@ def input_check(input_):
         try:
             tmp = int(input_)
             break
-        except ValueError:
+        except:
             print("Input must be a number!!")
-            raise ValueError
-        except TypeError:
-            print("Input must be a number!!")
-            raise TypeError
+            raise
     return tmp
 
 
@@ -58,8 +55,7 @@ class City:
             moisture += i[1]
         temperature /= len(self.statistics)
         moisture /= len(self.statistics) + 1
-        return_ = (temperature, moisture)
-        return return_
+        return temperature, moisture
 
 
 def get_temperature_difference(first_city, second_city):
@@ -73,3 +69,4 @@ def get_temperature_difference(first_city, second_city):
         return_[3] = "colder"
         return_[7] = str(-difference)
     return "".join(return_)
+

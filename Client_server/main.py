@@ -18,11 +18,11 @@ commands_list = ["help",
 def create_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('--host', default='localhost')
-    parser.add_argument('--port', default=8000, type= int)
+    parser.add_argument('--port', default=8000, type=int)
     return parser
 
 
-def stop_session():
+def stop_session(*args):
     while True:
         input_ = input('Are you really sure you want to end the session (Y/N)?\n')
         if input_ == 'Y' or input_ == 'y':
@@ -36,9 +36,22 @@ def stop_session():
             print("Unexpected answer, please try again!")
 
 
-def print_list(list_):
-    for i in list_:
+def print_list(*args):
+    for i in commands_list:
         print(i)
+
+
+command_functions = [print_list,
+                     functions.add_city,
+                     functions.city_list,
+                     functions.temperature,
+                     functions.change_temperature,
+                     functions.moisture,
+                     functions.change_moisture,
+                     functions.temperature_difference,
+                     functions.last_days_statistics,
+                     functions.make_prediction,
+                     stop_session]
 
 
 def main():
@@ -49,33 +62,19 @@ def main():
     while True:
         try:
             command = input("\nEnter command> ")
-            if command == commands_list[0]:
-                print_list(commands_list)
-            elif command == commands_list[1]:
-                functions.add_city(args)
-            elif command == commands_list[2]:
-                functions.city_list(args)
-            elif command == commands_list[3]:
-                functions.temperature(args)
-            elif command == commands_list[4]:
-                functions.change_temperature(args)
-            elif command == commands_list[5]:
-                functions.moisture(args)
-            elif command == commands_list[6]:
-                functions.change_moisture(args)
-            elif command == commands_list[7]:
-                functions.temperature_difference(args)
-            elif command == commands_list[8]:
-                functions.last_days_statistics(args)
-            elif command == commands_list[9]:
-                functions.make_prediction(args)
-            elif command == commands_list[10]:
-                stop_session()
-            else:
+            flag = True
+            for i in range(11):
+                if command == commands_list[i]:
+                    command_functions[i](args)
+                    flag = False
+                    break
+            if flag:
                 print("Unknown command, please try again!")
+
         except KeyboardInterrupt:
             stop_session()
 
 
 if __name__ == '__main__':
     main()
+

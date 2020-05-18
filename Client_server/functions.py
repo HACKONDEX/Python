@@ -76,3 +76,4 @@ def make_prediction(args):
     verdict = requests.get(f'http://{args.host}:{args.port}/make_prediction',
                            data=dict(name=input(city_name_message))).text
     print(verdict)
+
