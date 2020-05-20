@@ -31,8 +31,7 @@ def return_temperature(name, city_dict):
         "Celsius ", str(city_dict[name].get_temperature_in_celsius()), "\n",
         "Fahrenheit ", str(city_dict[name].get_temperature_in_fahrenheit()), "\n",
         "Kelvin ", str(city_dict[name].get_temperature_in_kelvins())]
-    return_ = ""
-    return return_.join(temperatures)
+    return "".join(temperatures)
 
 
 def change_temperature(name, city_dict, new_temp):

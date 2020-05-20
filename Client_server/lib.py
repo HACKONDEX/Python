@@ -1,15 +1,12 @@
-from random import random
-
-
 def input_check(input_):
     while True:
         try:
-            tmp = int(input_)
+            input_int = int(input_)
             break
         except:
             print("Input must be a number!!")
             raise
-    return tmp
+    return input_int
 
 
 class City:
@@ -50,9 +47,9 @@ class City:
     def make_prediction(self):
         temperature = self.temperature
         moisture = self.moisture
-        for i in self.statistics:
-            temperature += i[0]
-            moisture += i[1]
+        for t, m in self.statistics:
+            temperature += t
+            moisture += m
         temperature /= len(self.statistics)
         moisture /= len(self.statistics) + 1
         return temperature, moisture

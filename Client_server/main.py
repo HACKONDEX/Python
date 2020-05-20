@@ -37,21 +37,21 @@ def stop_session(*args):
 
 
 def print_list(*args):
-    for i in commands_list:
-        print(i)
+    for command_name in commands_list:
+        print(command_name)
 
 
-command_functions = [print_list,
-                     functions.add_city,
-                     functions.city_list,
-                     functions.temperature,
-                     functions.change_temperature,
-                     functions.moisture,
-                     functions.change_moisture,
-                     functions.temperature_difference,
-                     functions.last_days_statistics,
-                     functions.make_prediction,
-                     stop_session]
+command_functions_dict = {"help": print_list,
+                          "add city": functions.add_city,
+                          "city list": functions.city_list,
+                          "temperature": functions.temperature,
+                          "change temperature": functions.change_temperature,
+                          "moisture": functions.moisture,
+                          "change moisture": functions.change_moisture,
+                          "temp diff": functions.temperature_difference,
+                          "last days statistics": functions.last_days_statistics,
+                          "make prediction": functions.make_prediction,
+                          "exit": stop_session}
 
 
 def main():
@@ -62,15 +62,10 @@ def main():
     while True:
         try:
             command = input("\nEnter command> ")
-            flag = True
-            for i in range(11):
-                if command == commands_list[i]:
-                    command_functions[i](args)
-                    flag = False
-                    break
-            if flag:
+            if command in commands_list:
+                command_functions_dict[command](args)
+            else:
                 print("Unknown command, please try again!")
-
         except KeyboardInterrupt:
             stop_session()
 
