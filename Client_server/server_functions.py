@@ -1,5 +1,5 @@
-import lib
 import functools
+import constants as cs
 
 
 def check_name_and_do_request(name, city_list, error_message, need_to_be_in_list):
@@ -19,11 +19,11 @@ def check_name_and_do_request(name, city_list, error_message, need_to_be_in_list
 def add_city(city, city_list, city_dict):
     city_list.append(city.get_city_name())
     city_dict[city.get_city_name()] = city
-    return "City successfully added!!"
+    return cs.city_added
 
 
 def return_moisture(name, city_dict):
-    return "Moisture level " + str(city_dict[name].get_moisture())
+    return cs.moisture_level + str(city_dict[name].get_moisture())
 
 
 def return_temperature(name, city_dict):
@@ -37,14 +37,14 @@ def return_temperature(name, city_dict):
 def change_temperature(name, city_dict, new_temp):
     old_temp = city_dict[name].get_temperature_in_celsius()
     city_dict[name].change_temperature(new_temp)
-    return_ = ["In", name, "temperature was changed from", str(old_temp), "to", str(new_temp)]
+    return_ = [cs.in_, name, "temperature was changed from", str(old_temp), "to", str(new_temp)]
     return " ".join(return_)
 
 
 def change_moisture(name, city_dict, new_moisture):
     old_moisture = city_dict[name].get_moisture()
     city_dict[name].change_moisture(new_moisture)
-    return_ = ["In", name, "moisture was changed from", str(old_moisture), "to", str(new_moisture)]
+    return_ = [cs.in_, name, "moisture was changed from", str(old_moisture), "to", str(new_moisture)]
     return " ".join(return_)
 
 
