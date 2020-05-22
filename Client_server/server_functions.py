@@ -28,30 +28,30 @@ def return_moisture(name, city_dict):
 
 def return_temperature(name, city_dict):
     temperatures = [
-        "Celsius ", str(city_dict[name].get_temperature_in_celsius()), "\n",
-        "Fahrenheit ", str(city_dict[name].get_temperature_in_fahrenheit()), "\n",
-        "Kelvin ", str(city_dict[name].get_temperature_in_kelvins())]
+        cs.celsius, str(city_dict[name].get_temperature_in_celsius()), "\n",
+        cs.fahrenheit, str(city_dict[name].get_temperature_in_fahrenheit()), "\n",
+        cs.kelvin, str(city_dict[name].get_temperature_in_kelvins())]
     return "".join(temperatures)
 
 
 def change_temperature(name, city_dict, new_temp):
     old_temp = city_dict[name].get_temperature_in_celsius()
     city_dict[name].change_temperature(new_temp)
-    return_ = [cs.in_, name, "temperature was changed from", str(old_temp), "to", str(new_temp)]
+    return_ = [cs.in_, name, cs.temperature_was_changed, str(old_temp), cs.to, str(new_temp)]
     return " ".join(return_)
 
 
 def change_moisture(name, city_dict, new_moisture):
     old_moisture = city_dict[name].get_moisture()
     city_dict[name].change_moisture(new_moisture)
-    return_ = [cs.in_, name, "moisture was changed from", str(old_moisture), "to", str(new_moisture)]
+    return_ = [cs.in_, name, cs.moisture_was_changed, str(old_moisture), cs.to, str(new_moisture)]
     return " ".join(return_)
 
 
 def make_prediction(name, city_dict):
     data = city_dict[name].make_prediction()
-    return_ = ["Tomorrow in", name, "will be", str(int(data[0])),
-               "degrees by Celsius.", "Moisture level will be", str(int(data[1]))]
+    return_ = [cs.tomorrow_in, name, cs.will_be, str(int(data[0])),
+               cs.degrees_by_celsius, cs.moisture_level, cs.will_be, str(int(data[1]))]
     return " ".join(return_)
 
 
@@ -61,9 +61,9 @@ def statistics(name, city_dict):
     return_ = list()
     for i in range(days_count):
         return_.append(str(days_count - i))
-        return_.append(" days ago temperature was ")
+        return_.append(cs.days_ago_temp_was)
         return_.append(str(int(data[i][0])))
-        return_.append(" degrees in Celsius, moisture level was ")
+        return_.append(cs.degrees_moisture_level)
         return_.append(str(int(data[i][1])))
         return_.append("\n")
     return "".join(return_)

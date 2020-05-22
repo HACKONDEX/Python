@@ -20,7 +20,7 @@ def add_city():
     temp = flask.request.form["temp"]
     moist = flask.request.form["moist"]
     return check_name_and_do_request \
-        (name, city_list, "We already have this city in our serving cities list!!", False) \
+        (name, city_list, cs.sever_city_message, False) \
         (server_functions.add_city) \
         (lib.City(name, int(temp), int(moist)), city_list, city_dict)
 
@@ -59,15 +59,13 @@ def change_moisture():
 def temperature_difference():
     first_name = flask.request.form["first"]
     second_name = flask.request.form["second"]
-    message = "One the cities or both aren't being served!\n" \
-              "Please check the serving city list using command city list"
     if check_name_and_do_request(first_name, city_list, False, True) \
             (lambda: True)() and \
             check_name_and_do_request(second_name, city_list, False, True) \
             (lambda: True)():
         return lib.get_temperature_difference(city_dict[first_name], city_dict[second_name])
     else:
-        return message
+        return cs.wrong_city_message;
 
 
 @application.route(cs.make_prediction, methods=['GET'])
@@ -83,7 +81,7 @@ def statistics():
 
 
 def main():
-    application.run('::', port=8000, debug=True)
+    application.run('::', port=cs.default_port, debug=True)
 
 
 if __name__ == "__main__":

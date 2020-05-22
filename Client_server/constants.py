@@ -1,3 +1,6 @@
+default_port = 8000
+default_host = 'localhost'
+
 hello_print = "Hello, you entered Weather control system!"
 help_print = "Type 'help' for command list"
 command_print = "\nEnter command> "
@@ -45,7 +48,22 @@ hotter = "hotter"
 colder = "colder"
 degrees_in_celsius = "degrees of Celsius"
 no_city_message = "We don't serve this city!!\nCheck the city list using command city list"
+wrong_city_message = "One of the cities or both aren't being served!\n" \
+              "Please check the serving city list using command city list"
+sever_city_message = "We already have this city in our serving cities list!!"
 city_added = "City successfully added!!"
 moisture_level = "Moisture level "
 in_ = "In"
+celsius = "Celsius "
+fahrenheit = "Fahrenheit "
+kelvin = "Kelvin "
+temperature_was_changed = "temperature was changed from"
+to = "to"
+moisture_was_changed = "moisture was changed from"
+tomorrow_in = "Tomorrow in"
+will_be = "will be"
+degrees_by_celsius = "degrees by Celsius."
+days_ago_temp_was = " days ago temperature was "
+degrees_moisture_level = " degrees in Celsius, moisture level was "
+
 

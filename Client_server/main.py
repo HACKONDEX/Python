@@ -2,14 +2,11 @@ import argparse
 import functions
 import constants as cs
 
-default_port = 8000
-default_host = 'localhost'
-
 
 def create_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--host', default=default_host)
-    parser.add_argument('--port', default=default_port, type=int)
+    parser.add_argument('--host', default=cs.default_host)
+    parser.add_argument('--port', default=cs.default_port, type=int)
     return parser
 
 
