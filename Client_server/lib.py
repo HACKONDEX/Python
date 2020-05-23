@@ -60,6 +60,25 @@ class City:
         moisture /= len(self.statistics) + 1
         return temperature, moisture
 
+    def __str__(self):
+        temperatures = [
+            cs.celsius, str(self.temperature), "\n",
+            cs.fahrenheit, str(cs.get_fahrenheit_from_celsius(self.temperature)), "\n",
+            cs.kelvin, str(cs.get_kelvin_from_celsius(self.temperature))]
+        return "".join(temperatures)
+
+    def get_last_days_statistics(self):
+        days_count = len(self.statistics)
+        result_list = []
+        for i in range(days_count):
+            result_list.append(str(days_count - i))
+            result_list.append(cs.days_ago_temp_was)
+            result_list.append(str(int(self.statistics[i][0])))
+            result_list.append(cs.degrees_moisture_level)
+            result_list.append(str(int(self.statistics[i][1])))
+            result_list.append("\n")
+        return "".join(result_list)
+
 
 def get_temperature_difference(first_city, second_city):
     difference = int(first_city.get_temperature_in_celsius()) - int(second_city.get_temperature_in_celsius())

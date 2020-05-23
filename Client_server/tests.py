@@ -1,6 +1,6 @@
-import lib
 from lib import City
 import unittest
+import constants as cs
 
 
 class TestCity(unittest.TestCase):
@@ -10,7 +10,8 @@ class TestCity(unittest.TestCase):
 
     def test_temperature_in_kelvin(self):
         havana = City("Havana", 25, 70)
-        self.assertEqual(havana.get_temperature_in_kelvins(), havana.get_temperature_in_celsius() + 273)
+        self.assertEqual(havana.get_temperature_in_kelvins(),
+                         cs.get_kelvin_from_celsius(havana.get_temperature_in_celsius()))
 
     def test_temperature_in_fahrenheit(self):
         havana = City("Havana", 25, 70)
@@ -91,3 +92,4 @@ class TestCity(unittest.TestCase):
     def test_make_prediction(self):
         havana = City("Havana", 25, 70)
         self.assertEqual(havana.make_prediction(), (50.0, 70.0))
+

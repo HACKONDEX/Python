@@ -17,10 +17,10 @@ enter_new_moisture_print = "Enter new moisture> "
 first_city_print = "Enter first city name> "
 second_city_print = "Enter second city name> "
 
-stop_session_print1 = "Are you really sure you want to end the session (Y/N)?\n"
-stop_session_print2 = "See you next time!"
-stop_session_print3 = "It is a better idea"
-stop_session_print4 = "Unexpected answer, please try again!"
+stop_session_print = {"sure": "Are you really sure you want to end the session (Y/N)?\n",
+                      "next time": "See you next time!",
+                      "good": "It is a better idea",
+                      "answer": "Unexpected answer, please try again!"}
 commands_list = ["help",
                  "add city",
                  "city list",

@@ -1,6 +1,7 @@
 import requests
 import constants as cs
 
+
 address = ""
 
 
@@ -11,21 +12,20 @@ def set_address(args):
 
 def stop_session():
     while True:
-        input_ = input(cs.stop_session_print1)
+        input_ = input(cs.stop_session_print["sure"])
         if input_ in cs.input_y:
-            print(cs.stop_session_print2)
+            print(cs.stop_session_print["next time"])
             exit()
             break
         elif input_ in cs.input_n:
-            print(cs.stop_session_print3)
+            print(cs.stop_session_print["good"])
             break
         else:
-            print(cs.stop_session_print4)
+            print(cs.stop_session_print["answer"])
 
 
 def print_list():
-    for command_name in cs.commands_list:
-        print(command_name)
+    print(*cs.commands_list, sep='\n')
 
 
 def input_for_int(input_message, error_message):
