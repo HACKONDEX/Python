@@ -65,7 +65,7 @@ def temperature_difference():
             (lambda: True)():
         return lib.get_temperature_difference(city_dict[first_name], city_dict[second_name])
     else:
-        return cs.wrong_city_message;
+        return cs.wrong_city_message
 
 
 @application.route(cs.make_prediction, methods=['GET'])

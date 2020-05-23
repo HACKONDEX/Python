@@ -27,11 +27,7 @@ def return_moisture(name, city_dict):
 
 
 def return_temperature(name, city_dict):
-    temperatures = [
-        cs.celsius, str(city_dict[name].get_temperature_in_celsius()), "\n",
-        cs.fahrenheit, str(city_dict[name].get_temperature_in_fahrenheit()), "\n",
-        cs.kelvin, str(city_dict[name].get_temperature_in_kelvins())]
-    return "".join(temperatures)
+    return get_temperatures_list(city_dict[name])
 
 
 def change_temperature(name, city_dict, new_temp):
@@ -58,13 +54,25 @@ def make_prediction(name, city_dict):
 def statistics(name, city_dict):
     data = city_dict[name].get_statistics()
     days_count = len(data)
-    return_ = list()
+    return_ = []
     for i in range(days_count):
-        return_.append(str(days_count - i))
-        return_.append(cs.days_ago_temp_was)
-        return_.append(str(int(data[i][0])))
-        return_.append(cs.degrees_moisture_level)
-        return_.append(str(int(data[i][1])))
-        return_.append("\n")
+        make_statistics_list(return_, data[i], days_count - i)
     return "".join(return_)
+
+
+def get_temperatures_list(city):
+    temperatures = [
+        cs.celsius, str(city.get_temperature_in_celsius()), "\n",
+        cs.fahrenheit, str(city.get_temperature_in_fahrenheit()), "\n",
+        cs.kelvin, str(city.get_temperature_in_kelvins())]
+    return "".join(temperatures)
+
+
+def make_statistics_list(result_list, data, day):
+    result_list.append(str(day))
+    result_list.append(cs.days_ago_temp_was)
+    result_list.append(str(int(data[0])))
+    result_list.append(cs.degrees_moisture_level)
+    result_list.append(str(int(data[1])))
+    result_list.append("\n")
 

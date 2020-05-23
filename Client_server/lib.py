@@ -1,20 +1,17 @@
 import constants as cs
 
-kelvins_constant = 273
-coefficients = [9, 5, 32]
-
 
 def input_check(input_):
     while True:
         try:
             input_int = int(input_)
             break
-        except ValueError:
+        except ValueError as error:
             print(cs.wrong_input_message)
-            raise ValueError
-        except TypeError:
+            raise ValueError from error
+        except TypeError as error:
             print(cs.wrong_input_message)
-            raise TypeError
+            raise TypeError from error
     return input_int
 
 
@@ -26,13 +23,13 @@ class City:
         self.statistics = [(temperature, moisture)]
 
     def get_temperature_in_kelvins(self):
-        return self.temperature + kelvins_constant
+        return cs.get_kelvin_from_celsius(self.temperature)
 
     def get_temperature_in_celsius(self):
         return self.temperature
 
     def get_temperature_in_fahrenheit(self):
-        return int(self.temperature * (coefficients[0] / coefficients[1]) + coefficients[2])
+        return cs.get_fahrenheit_from_celsius(self.temperature)
 
     def get_moisture(self):
         return self.moisture
@@ -72,6 +69,6 @@ def get_temperature_difference(first_city, second_city):
     else:
         hotter_colder = cs.colder
         difference = str(-difference)
-    return f"In {first_city.get_city_name()} is {hotter_colder} than on " \
-           f"{second_city.get_city_name()} by {difference} {cs.degrees_in_celsius}"
+    return f"{cs.in_} {first_city.get_city_name()} {cs.is_} {hotter_colder} {cs.than_on} " \
+           f"{second_city.get_city_name()} {cs.by} {difference} {cs.degrees_in_celsius}"
 

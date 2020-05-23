@@ -1,6 +1,8 @@
 default_port = 8000
 default_host = 'localhost'
 
+input_n = ['n', 'N']
+input_y = ['y', 'Y']
 hello_print = "Hello, you entered Weather control system!"
 help_print = "Type 'help' for command list"
 command_print = "\nEnter command> "
@@ -15,11 +17,10 @@ enter_new_moisture_print = "Enter new moisture> "
 first_city_print = "Enter first city name> "
 second_city_print = "Enter second city name> "
 
-stop_session_print = ["Are you really sure you want to end the session (Y/N)?\n",
-                      "See you next time!",
-                      "It is a better idea",
-                      "Unexpected answer, please try again!"]
-
+stop_session_print1 = "Are you really sure you want to end the session (Y/N)?\n"
+stop_session_print2 = "See you next time!"
+stop_session_print3 = "It is a better idea"
+stop_session_print4 = "Unexpected answer, please try again!"
 commands_list = ["help",
                  "add city",
                  "city list",
@@ -65,5 +66,15 @@ will_be = "will be"
 degrees_by_celsius = "degrees by Celsius."
 days_ago_temp_was = " days ago temperature was "
 degrees_moisture_level = " degrees in Celsius, moisture level was "
+is_ = "is"
+than_on = "than on"
+by = "by"
 
+
+def get_fahrenheit_from_celsius(temp):
+    return int(temp * (9 / 5) + 32)
+
+
+def get_kelvin_from_celsius(temp):
+    return temp + 273
 

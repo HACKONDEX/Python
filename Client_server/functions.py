@@ -11,16 +11,16 @@ def set_address(args):
 
 def stop_session():
     while True:
-        input_ = input(cs.stop_session_print[0])
-        if input_ == 'Y' or input_ == 'y':
-            print(cs.stop_session_print[1])
+        input_ = input(cs.stop_session_print1)
+        if input_ in cs.input_y:
+            print(cs.stop_session_print2)
             exit()
             break
-        elif input_ == 'N' or input_ == 'n':
-            print(cs.stop_session_print[2])
+        elif input_ in cs.input_n:
+            print(cs.stop_session_print3)
             break
         else:
-            print(cs.stop_session_print[3])
+            print(cs.stop_session_print4)
 
 
 def print_list():
