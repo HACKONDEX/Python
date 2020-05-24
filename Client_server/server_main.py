@@ -3,11 +3,10 @@ import lib
 import server_functions
 import constants as cs
 from server_functions import check_name_and_do_request
+from server_data import city_dict, city_list
 
 
 application = flask.Flask('Weather-control-system')
-city_list = ["Vladivostok", "Moscow"]
-city_dict = {city_list[0]: lib.City(city_list[0], 15, 70), city_list[1]: lib.City(city_list[1], 20, 40)}
 
 
 @application.route(cs.get_city_list, methods=['GET'])
